@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { Categories, categories } from '../data';
 import { useGameState } from '../components/stores/useGameState';
 
-function flattenWords(categories: Categories) {
+export function flattenWords(categories: Categories) {
   return Object.values(categories).flat();
 }
 
@@ -11,8 +10,7 @@ function shuffleWords(words: string[]) {
 }
 
 export function useConnectionsGame() {
-  const [words, setWords] = useState(flattenWords(categories));
-  const { selectedWords, setSelectedWords } = useGameState();
+  const { words, setWords, selectedWords, setSelectedWords } = useGameState();
 
   function handleShuffle() {
     setWords(shuffleWords([...words]));

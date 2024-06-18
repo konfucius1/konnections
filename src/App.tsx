@@ -49,6 +49,11 @@ function App() {
             console.log('result: ', result);
             if (result) {
               setCorrectAttempt(true);
+              // remove the selected words from the grid
+              const newWords = words.filter(
+                (word) => !selectedWords.includes(word),
+              );
+              console.log('newWords: ', newWords);
             } else {
               decrementAttempt();
               setCorrectAttempt(false);
