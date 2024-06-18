@@ -1,5 +1,6 @@
 import { Grid } from './components/Grid';
 import { useGameState } from './components/stores/useGameState';
+import { CorrectTiles } from './components/tile/CorrectTiles';
 import { useConnectionsGame } from './hooks/useConnectionsGame';
 
 function App() {
@@ -24,11 +25,7 @@ function App() {
 
   return (
     <div className="flex flex-col gap-2">
-      {correctWords.map((word) => (
-        <div key={word} className="text-2xl font-bold">
-          {word}
-        </div>
-      ))}
+      <CorrectTiles words={correctWords} />
 
       <Grid
         words={words}

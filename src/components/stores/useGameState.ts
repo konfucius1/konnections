@@ -6,13 +6,13 @@ type GameStateType = {
   words: string[];
   correctWords: string[];
   attempts: number;
-  isCorrectAttempt: boolean;
+  isCorrectAttempt: boolean | null;
   gameOver: boolean;
   selectedWords: string[];
   setWords: (words: string[]) => void;
   setCorrectWords: (correctWords: string[]) => void;
   decrementAttempt: () => void;
-  setCorrectAttempt: (isCorrectAttempt: boolean) => void;
+  setCorrectAttempt: (isCorrectAttempt: boolean | null) => void;
   setGameOver: (gameOver: boolean) => void;
   setSelectedWords: (selectedWords: string[]) => void;
 };
@@ -21,7 +21,7 @@ export const useGameState = create<GameStateType>((set) => ({
   words: flattenWords(categories),
   correctWords: [],
   attempts: 4,
-  isCorrectAttempt: false,
+  isCorrectAttempt: null,
   gameOver: false,
   selectedWords: [],
   setWords: (words) => set({ words }),
