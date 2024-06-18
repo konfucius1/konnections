@@ -35,7 +35,7 @@ export default {
         },
       },
       animation: {
-        wobble: 'wobble 1s infinite',
+        wobble: 'wobble 1s',
       },
     },
   },
