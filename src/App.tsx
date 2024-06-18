@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { Grid } from './components/Grid';
+import { useGameState } from './components/stores/useGameState';
 import { useConnectionsGame } from './hooks/useConnectionsGame';
 
 function App() {
@@ -12,9 +12,9 @@ function App() {
     checkIfSelectionIsCorrect,
   } = useConnectionsGame();
 
-  const reachedMaxSelection = selectedWords.length === 4;
+  const { decrementAttempt, setCorrectAttempt, setGameOver } = useGameState();
 
-  const [isCorrect, setIsCorrect] = useState(false);
+  const reachedMaxSelection = selectedWords.length === 4;
 
   return (
     <div className="flex flex-col gap-2">
@@ -47,7 +47,12 @@ function App() {
           onClick={() => {
             const result = checkIfSelectionIsCorrect(selectedWords);
             console.log('result: ', result);
-            setIsCorrect(result);
+            if (result) {
+              setCorrectAttempt(true);
+            } else {
+              decrementAttempt();
+              setCorrectAttempt(false);
+            }
           }}
         >
           Submit
