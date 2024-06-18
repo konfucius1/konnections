@@ -12,14 +12,13 @@ function shuffleWords(words: string[]) {
 export function useConnectionsGame() {
   const [words, setWords] = useState(flattenWords(categories));
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
-  console.log('selectedWords: ', selectedWords);
 
   function handleShuffle() {
     setWords(shuffleWords([...words]));
   }
 
   function handleSelectWord(word: string) {
-    if (selectedWords.length === 4) return;
+    // if (selectedWords.length === 4) return;
 
     if (selectedWords.includes(word)) {
       setSelectedWords(
@@ -30,11 +29,30 @@ export function useConnectionsGame() {
     }
   }
 
+  function clearSelectedWords() {
+    setSelectedWords([]);
+  }
+
+  function arrayContainsAllElements(arr: string[], target: string[]): boolean {
+    return target.every((element) => arr.includes(element));
+  }
+
+  function checkIfSelectionIsCorrect(target: string[]): boolean {
+    const arrayOfArrays = Object.values(categories);
+    return arrayOfArrays.some(
+      (array) =>
+        arrayContainsAllElements(array, target) &&
+        array.length === target.length,
+    );
+  }
+
   return {
     words,
     setWords,
     selectedWords,
     handleSelectWord,
     handleShuffle,
+    clearSelectedWords,
+    checkIfSelectionIsCorrect,
   };
 }
