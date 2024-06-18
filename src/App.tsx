@@ -4,20 +4,32 @@ import { useConnectionsGame } from './hooks/useConnectionsGame';
 
 function App() {
   const {
-    words,
-    selectedWords,
     handleSelectWord,
     handleShuffle,
     clearSelectedWords,
     checkIfSelectionIsCorrect,
   } = useConnectionsGame();
 
-  const { decrementAttempt, setCorrectAttempt, setGameOver } = useGameState();
+  const {
+    words,
+    selectedWords,
+    decrementAttempt,
+    setCorrectAttempt,
+    setWords,
+    setCorrectWords,
+    correctWords,
+  } = useGameState();
 
   const reachedMaxSelection = selectedWords.length === 4;
 
   return (
     <div className="flex flex-col gap-2">
+      {correctWords.map((word) => (
+        <div key={word} className="text-2xl font-bold">
+          {word}
+        </div>
+      ))}
+
       <Grid
         words={words}
         selectedWords={selectedWords}
@@ -53,7 +65,9 @@ function App() {
               const newWords = words.filter(
                 (word) => !selectedWords.includes(word),
               );
-              console.log('newWords: ', newWords);
+              setCorrectWords([...correctWords, ...selectedWords]);
+              setWords(newWords);
+              clearSelectedWords();
             } else {
               decrementAttempt();
               setCorrectAttempt(false);
