@@ -12,7 +12,7 @@ export function Tile({ word, isSelected, onClick }: TileType) {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (!isCorrectAttempt) {
+    if (!isCorrectAttempt && selectedWords.includes(word)) {
       buttonRef.current?.classList.add('animate-wobble');
       setCorrectAttempt(null);
       // delete class after animation end
@@ -20,7 +20,7 @@ export function Tile({ word, isSelected, onClick }: TileType) {
         buttonRef.current?.classList.remove('animate-wobble');
       });
     }
-  }, [isCorrectAttempt, setCorrectAttempt]);
+  }, [isCorrectAttempt, selectedWords, setCorrectAttempt, word]);
 
   if (selectedWords.includes(word)) {
     console.log('selectedWords: ', selectedWords);
