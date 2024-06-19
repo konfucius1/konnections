@@ -38,10 +38,10 @@ function App() {
     if (attempts === 0) {
       setOpenModal(true);
       setGameOver(true);
-    } else if (correctWords.length === 16) {
-      setOpenModal(true);
+    } else if (correctWords.length === 4) {
       setGameWon(true);
       setGameOver(true);
+      setOpenModal(true);
     }
   }, [attempts, correctWords.length, setGameOver, words.length]);
 
