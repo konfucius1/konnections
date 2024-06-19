@@ -12,7 +12,8 @@ export function Tile({ word, isSelected, onClick }: TileType) {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (!isCorrectAttempt && selectedWords.includes(word)) {
+    if (isCorrectAttempt === false && selectedWords.includes(word)) {
+      console.log('inside useEffect');
       buttonRef.current?.classList.add('animate-wobble');
       setCorrectAttempt(null);
       // delete class after animation end

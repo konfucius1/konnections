@@ -54,21 +54,22 @@ function App() {
             reachedMaxSelection ? 'text-yellow-50' : 'text-zinc-800'
           } hover:bg-zinc-400 hover:text-zinc-900 transition ease-in-out`}
           onClick={() => {
-            const result = checkIfSelectionIsCorrect(selectedWords);
-            console.log('result: ', result);
-            if (result) {
-              setCorrectAttempt(true);
-              // remove the selected words from the grid
-              const newWords = words.filter(
-                (word) => !selectedWords.includes(word),
-              );
-              setCorrectWords([...correctWords, ...selectedWords]);
-              setWords(newWords);
-              clearSelectedWords();
-            } else {
-              decrementAttempt();
-              setCorrectAttempt(false);
-            }
+            setTimeout(() => {
+              const result = checkIfSelectionIsCorrect(selectedWords);
+              if (result) {
+                // remove the selected words from the grid
+                const newWords = words.filter(
+                  (word) => !selectedWords.includes(word),
+                );
+                setCorrectWords([...correctWords, ...selectedWords]);
+                setWords(newWords);
+                setCorrectAttempt(true);
+                clearSelectedWords();
+              } else {
+                decrementAttempt();
+                setCorrectAttempt(false);
+              }
+            }, 500);
           }}
         >
           Submit
