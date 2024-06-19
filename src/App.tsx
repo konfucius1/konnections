@@ -91,7 +91,7 @@ function App() {
         </button>
 
         <button
-          className="py-2 px-4 bg-yellow-100"
+          className="py-2 px-4 bg-yellow-100 rounded-md"
           onClick={clearSelectedWords}
         >
           Clear
