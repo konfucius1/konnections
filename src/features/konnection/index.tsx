@@ -1,16 +1,17 @@
-import { Grid } from './components/Grid';
-import { useGameState } from './stores/useGameState';
-import { CorrectTiles } from './components/tile/CorrectTiles';
-import { useConnectionsGame } from './hooks/useConnectionsGame';
-import Stopwatch, { formatTime } from './components/stopwatch';
+import { Grid } from '@/components/Grid';
+import { useGameState } from '@/stores/useGameState';
+import { CorrectTiles } from '@/components/tile/CorrectTiles';
+import { useConnectionsGame } from '@/hooks/useConnectionsGame';
+import Stopwatch from '@/components/stopwatch';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import Modal from './components/modal';
-import { Attempts } from './components/attempts';
-import { Button } from './components/ui/button';
-import debounce from './hooks/useDebounce';
+import Modal from '@/components/modal';
+import { Attempts } from '@/components/attempts';
+import { Button } from '@/components/ui/button';
+import debounce from '@/hooks/useDebounce';
+import { formatTime } from '@/utils';
 
-function App() {
+function KonnectionGame() {
   const {
     handleSelectWord,
     handleShuffle,
@@ -77,7 +78,7 @@ function App() {
   const debouncedSubmit = debounce(handleSubmit, 1000);
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center">
+    <div className="flex flex-col gap-4 justify-center items-center mt-8">
       <div className="animate-wobble text-center text-2xl font-bold">
         {alert ? <h1>{alert}</h1> : <h1>Find the konnections!</h1>}
       </div>
@@ -131,4 +132,4 @@ function App() {
   );
 }
 
-export default App;
+export default KonnectionGame;
