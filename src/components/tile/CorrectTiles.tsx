@@ -16,10 +16,10 @@ export function CorrectTiles({
 }) {
   console.log('correctWordsList: ', correctWordsList);
   return (
-    <>
+    <div className="flex flex-col gap-2">
       {correctWordsList?.map((words, index) => (
         <CorrectBlock key={index} words={words} />
       ))}
-    </>
+    </div>
   );
 }

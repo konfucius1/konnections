@@ -6,6 +6,7 @@ import Stopwatch, { formatTime } from './components/stopwatch';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Modal from './components/modal';
+import { Attempts } from './components/attempts';
 
 function App() {
   const {
@@ -128,9 +129,7 @@ function App() {
         </button>
       </div>
 
-      <div className="text-center">
-        <h1>Attempts left: {attempts}</h1>
-      </div>
+      <Attempts attempts={attempts} />
 
       <AnimatePresence>
         {openModal && (
