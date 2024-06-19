@@ -4,10 +4,11 @@ import { CorrectTiles } from './components/tile/CorrectTiles';
 import { useConnectionsGame } from './hooks/useConnectionsGame';
 import Stopwatch, { formatTime } from './components/stopwatch';
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Modal from './components/modal';
 import { Attempts } from './components/attempts';
 import { Button } from './components/ui/button';
+import debounce from './hooks/useDebounce';
 
 function App() {
   const {
@@ -51,39 +52,48 @@ function App() {
 
   const [alert, setAlert] = useState<string>('');
 
-  return (
-    <div className="flex flex-col gap-2">
-      <AnimatePresence>
-        {openModal && (
-          <motion.div>
-            <motion.h5>Game over</motion.h5>
-            <motion.h2>Nice try!</motion.h2>
-          </motion.div>
-        )}
-      </AnimatePresence>
+  const handleSubmit = () => {
+    const { isCorrect, status } = checkIfSelectionIsCorrect(selectedWords);
+    setAlert(status);
 
-      <div>
-        {alert ? (
-          <h1 className="animate-wobble text-center text-2xl font-bold">
-            {alert}
-          </h1>
-        ) : (
-          <h1 className="animate-wobble text-center text-2xl font-bold">
-            Find the konnections!
-          </h1>
-        )}
+    if (isCorrect) {
+      // remove the selected words from the grid
+      const newWords = words.filter((word) => !selectedWords.includes(word));
+      setCorrectWords(selectedWords);
+      setWords(newWords);
+      setCorrectAttempt(true);
+      clearSelectedWords();
+    } else {
+      if (selectedWords.length !== 4) {
+        setAlert('Please select 4 words');
+        return;
+      }
+
+      decrementAttempt();
+      setCorrectAttempt(false);
+    }
+  };
+
+  const debouncedSubmit = debounce(handleSubmit, 1000);
+
+  return (
+    <div className="flex flex-col gap-4 justify-center items-center">
+      <div className="animate-wobble text-center text-2xl font-bold">
+        {alert ? <h1>{alert}</h1> : <h1>Find the konnections!</h1>}
       </div>
 
       <Stopwatch time={time} setTime={setTime} />
 
-      <CorrectTiles correctWordsList={correctWords} />
+      <div className="mt-8 flex flex-col gap-2 min-w-full">
+        <CorrectTiles correctWordsList={correctWords} />
+        <Grid
+          words={words}
+          selectedWords={selectedWords}
+          onWordClick={handleSelectWord}
+        />
+      </div>
 
-      <Grid
-        words={words}
-        selectedWords={selectedWords}
-        onWordClick={handleSelectWord}
-      />
-      <div className="flex gap-2">
+      <div className="flex gap-4 mt-16">
         <Button
           className="bg-blue-200 hover:bg-blue-400 text-foreground"
           onClick={handleShuffle}
@@ -100,32 +110,7 @@ function App() {
 
         <Button
           variant={reachedMaxSelection ? 'default' : 'secondary'}
-          onClick={() => {
-            setTimeout(() => {
-              const { isCorrect, status } =
-                checkIfSelectionIsCorrect(selectedWords);
-              setAlert(status);
-
-              if (isCorrect) {
-                // remove the selected words from the grid
-                const newWords = words.filter(
-                  (word) => !selectedWords.includes(word),
-                );
-                setCorrectWords(selectedWords);
-                setWords(newWords);
-                setCorrectAttempt(true);
-                clearSelectedWords();
-              } else {
-                if (selectedWords.length !== 4) {
-                  setAlert('Please select 4 words');
-                  return;
-                }
-
-                decrementAttempt();
-                setCorrectAttempt(false);
-              }
-            }, 500);
-          }}
+          onClick={() => debouncedSubmit()}
         >
           Submit
         </Button>

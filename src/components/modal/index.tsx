@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import { Button } from '../ui/button';
 
 interface ModalProps {
   message: string;
@@ -23,12 +24,9 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, time }) => {
       >
         <h2 className="text-2xl font-bold mb-4">{message}</h2>
         <p>{time}</p>
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={onClose}
-        >
+        <Button className="bg-blue-400 text-white mt-4" onClick={onClose}>
           Close
-        </button>
+        </Button>
       </motion.div>
     </motion.div>
   );
