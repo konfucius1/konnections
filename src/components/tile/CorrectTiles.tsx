@@ -1,13 +1,25 @@
-export function CorrectTiles({ words }: { words: string[] }) {
+import { getCategoryBasedOnArray } from '../../utils';
+
+function CorrectBlock({ words }: { words: string[] }) {
   return (
-    <div className="grid grid-cols-4 gap-2">
-      {words.map((word) => (
-        <button
-          className={`text-zinc-800 px-8 rounded-md py-4 max-w-40 text-lg font-semibold transition ease-in-out delay-25 h-24 items-center flex justify-center bg-purple-300 animate-jello`}
-        >
-          {word}
-        </button>
-      ))}
+    <div className="animate-wobble text-center px-8 rounded-md py-4 h-24 bg-green-100 flex flex-col justify-center items-center uppercase">
+      <h1 className="font-semibold">{getCategoryBasedOnArray(words)}</h1>
+      <p className="text-md">{words.join(', ')}</p>
     </div>
+  );
+}
+
+export function CorrectTiles({
+  correctWordsList,
+}: {
+  correctWordsList: string[][];
+}) {
+  console.log('correctWordsList: ', correctWordsList);
+  return (
+    <>
+      {correctWordsList?.map((words, index) => (
+        <CorrectBlock key={index} words={words} />
+      ))}
+    </>
   );
 }

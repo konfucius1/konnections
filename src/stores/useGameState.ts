@@ -4,7 +4,7 @@ import { categories } from '../data';
 
 type GameStateType = {
   words: string[];
-  correctWords: string[];
+  correctWords: string[][];
   attempts: number;
   isCorrectAttempt: boolean | null;
   gameOver: boolean;
@@ -25,7 +25,10 @@ export const useGameState = create<GameStateType>((set) => ({
   gameOver: false,
   selectedWords: [],
   setWords: (words) => set({ words }),
-  setCorrectWords: (correctWords) => set({ correctWords }),
+  setCorrectWords: (newCorrectWords) =>
+    set((state) => ({
+      correctWords: [...state.correctWords, newCorrectWords],
+    })),
   decrementAttempt: () => set((state) => ({ attempts: state.attempts - 1 })),
   setCorrectAttempt: (isCorrectAttempt) => set({ isCorrectAttempt }),
   setGameOver: (gameOver) => set({ gameOver }),

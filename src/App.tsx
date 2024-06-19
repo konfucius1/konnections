@@ -74,7 +74,7 @@ function App() {
 
       <Stopwatch time={time} setTime={setTime} />
 
-      <CorrectTiles words={correctWords} />
+      <CorrectTiles correctWordsList={correctWords} />
 
       <Grid
         words={words}
@@ -113,7 +113,7 @@ function App() {
                 const newWords = words.filter(
                   (word) => !selectedWords.includes(word),
                 );
-                setCorrectWords([...correctWords, ...selectedWords]);
+                setCorrectWords(selectedWords);
                 setWords(newWords);
                 setCorrectAttempt(true);
                 clearSelectedWords();
