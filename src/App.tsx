@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Modal from './components/modal';
 import { Attempts } from './components/attempts';
+import { Button } from './components/ui/button';
 
 function App() {
   const {
@@ -83,26 +84,22 @@ function App() {
         onWordClick={handleSelectWord}
       />
       <div className="flex gap-2">
-        <button
-          className="py-2 px-4 bg-blue-300 hover:bg-blue:600 rounded-md max-w-fit"
+        <Button
+          className="bg-blue-200 hover:bg-blue-400 text-foreground"
           onClick={handleShuffle}
         >
           Shuffle
-        </button>
+        </Button>
 
-        <button
-          className="py-2 px-4 bg-yellow-100 rounded-md"
+        <Button
           onClick={clearSelectedWords}
+          className="bg-yellow-100 hover:bg-yellow-200 text-foreground"
         >
           Clear
-        </button>
+        </Button>
 
-        <button
-          className={`rounded-md py-2 px-4 ${
-            reachedMaxSelection ? `bg-zinc-800` : `bg-zinc-200`
-          } ${
-            reachedMaxSelection ? 'text-yellow-50' : 'text-zinc-800'
-          } hover:bg-zinc-400 hover:text-zinc-900 transition ease-in-out`}
+        <Button
+          variant={reachedMaxSelection ? 'default' : 'secondary'}
           onClick={() => {
             setTimeout(() => {
               const { isCorrect, status } =
@@ -119,6 +116,11 @@ function App() {
                 setCorrectAttempt(true);
                 clearSelectedWords();
               } else {
+                if (selectedWords.length !== 4) {
+                  setAlert('Please select 4 words');
+                  return;
+                }
+
                 decrementAttempt();
                 setCorrectAttempt(false);
               }
@@ -126,7 +128,7 @@ function App() {
           }}
         >
           Submit
-        </button>
+        </Button>
       </div>
 
       <Attempts attempts={attempts} />

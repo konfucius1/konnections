@@ -53,7 +53,7 @@ export function useConnectionsGame() {
         (element) => !target.includes(element),
       ).length;
       if (missingElements === 1 && target.length === array.length) {
-        return { isCorrect: false, status: '1 away' };
+        return { isCorrect: false, status: 'Close! just one away' };
       }
     }
 

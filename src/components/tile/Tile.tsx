@@ -13,7 +13,6 @@ export function Tile({ word, isSelected, onClick }: TileType) {
 
   useEffect(() => {
     if (isCorrectAttempt === false && selectedWords.includes(word)) {
-      console.log('inside useEffect');
       buttonRef.current?.classList.add('animate-wobble');
       setCorrectAttempt(null);
       // delete class after animation end
@@ -23,16 +22,12 @@ export function Tile({ word, isSelected, onClick }: TileType) {
     }
   }, [isCorrectAttempt, selectedWords, setCorrectAttempt, word]);
 
-  if (selectedWords.includes(word)) {
-    console.log('selectedWords: ', selectedWords);
-  }
-
   return (
     <button
       ref={buttonRef}
       className={`${
         isSelected ? 'bg-blue-400' : 'bg-blue-200'
-      } text-zinc-800 px-8 rounded-md py-4 md:text-lg text-md font-semibold hover:bg-blue-300 transition ease-in-out delay-25 h-20 items-center flex justify-center uppercase`}
+      } text-zinc-800 px-8 rounded-md py-4 md:text-lg text-md font-semibold hover:bg-blue-400 transition ease-in-out delay-25 h-20 items-center flex justify-center uppercase`}
       onClick={() => {
         onClick();
       }}
