@@ -23,10 +23,18 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, time }) => {
         exit={{ scale: 0.5 }}
       >
         <h2 className="text-2xl font-bold mb-4">{message}</h2>
-        <p>{time}</p>
-        <Button className="bg-blue-400 text-white mt-4" onClick={onClose}>
-          Close
-        </Button>
+        <section>
+          <p>You finished it in</p>
+          <p className="font-bold">{time}</p>
+        </section>
+        <div className="flex gap-4 justify-center mt-4">
+          <Button onClick={onClose} variant="outline">
+            Close
+          </Button>
+          <Button className="bg-blue-400 hover:bg-blue-600">
+            Go to your reward
+          </Button>
+        </div>
       </motion.div>
     </motion.div>
   );
