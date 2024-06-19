@@ -3,6 +3,7 @@ import { useGameState } from './stores/useGameState';
 import { CorrectTiles } from './components/tile/CorrectTiles';
 import { useConnectionsGame } from './hooks/useConnectionsGame';
 import Stopwatch from './components/stopwatch';
+import { useState } from 'react';
 
 function App() {
   const {
@@ -25,8 +26,22 @@ function App() {
 
   const reachedMaxSelection = selectedWords.length === 4;
 
+  const [alert, setAlert] = useState<string>('');
+
   return (
     <div className="flex flex-col gap-2">
+      <div>
+        {alert ? (
+          <h1 className="animate-wobble text-center text-2xl font-bold">
+            {alert}
+          </h1>
+        ) : (
+          <h1 className="animate-wobble text-center text-2xl font-bold">
+            Find the konnections!
+          </h1>
+        )}
+      </div>
+
       <Stopwatch />
 
       <CorrectTiles words={correctWords} />
@@ -59,8 +74,11 @@ function App() {
           } hover:bg-zinc-400 hover:text-zinc-900 transition ease-in-out`}
           onClick={() => {
             setTimeout(() => {
-              const result = checkIfSelectionIsCorrect(selectedWords);
-              if (result) {
+              const { isCorrect, status } =
+                checkIfSelectionIsCorrect(selectedWords);
+              setAlert(status);
+
+              if (isCorrect) {
                 // remove the selected words from the grid
                 const newWords = words.filter(
                   (word) => !selectedWords.includes(word),
