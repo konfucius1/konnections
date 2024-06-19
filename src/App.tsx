@@ -1,7 +1,8 @@
 import { Grid } from './components/Grid';
-import { useGameState } from './components/stores/useGameState';
+import { useGameState } from './stores/useGameState';
 import { CorrectTiles } from './components/tile/CorrectTiles';
 import { useConnectionsGame } from './hooks/useConnectionsGame';
+import Stopwatch from './components/stopwatch';
 
 function App() {
   const {
@@ -19,12 +20,15 @@ function App() {
     setWords,
     setCorrectWords,
     correctWords,
+    attempts,
   } = useGameState();
 
   const reachedMaxSelection = selectedWords.length === 4;
 
   return (
     <div className="flex flex-col gap-2">
+      <Stopwatch />
+
       <CorrectTiles words={correctWords} />
 
       <Grid
@@ -74,6 +78,10 @@ function App() {
         >
           Submit
         </button>
+      </div>
+
+      <div className="text-center">
+        <h1>Attempts left: {attempts}</h1>
       </div>
     </div>
   );

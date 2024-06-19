@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { flattenWords } from '../../hooks/useConnectionsGame';
-import { categories } from '../../data';
+import { flattenWords } from '../hooks/useConnectionsGame';
+import { categories } from '../data';
 
 type GameStateType = {
   words: string[];

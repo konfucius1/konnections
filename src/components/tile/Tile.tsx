@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useGameState } from '../stores/useGameState';
+import { useGameState } from '../../stores/useGameState';
 
 type TileType = {
   word: string;

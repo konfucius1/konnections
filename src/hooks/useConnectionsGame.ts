@@ -1,5 +1,5 @@
 import { Categories, categories } from '../data';
-import { useGameState } from '../components/stores/useGameState';
+import { useGameState } from '../stores/useGameState';
 
 export function flattenWords(categories: Categories) {
   return Object.values(categories).flat();
