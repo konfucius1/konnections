@@ -1,4 +1,3 @@
-import App from '@/App';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 export const Route = createLazyFileRoute('/about')({
@@ -6,5 +5,10 @@ export const Route = createLazyFileRoute('/about')({
 });
 
 function About() {
-  return <App />;
+  return (
+    <div>
+      <h1>About</h1>
+      <p>This is the about page.</p>
+    </div>
+  );
 }

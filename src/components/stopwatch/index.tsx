@@ -7,10 +7,10 @@ function Stopwatch({
   setTime,
 }: {
   time: number;
-  setTime: (time: number) => void;
+  setTime: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { gameOver } = useGameState();
-  const timerRef = useRef(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!gameOver) {
@@ -18,10 +18,16 @@ function Stopwatch({
         setTime((prevTime) => prevTime + 1);
       }, 1000);
     } else {
-      clearInterval(timerRef.current);
+      if (timerRef.current !== null) {
+        clearInterval(timerRef.current);
+      }
     }
 
-    return () => clearInterval(timerRef.current);
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [gameOver, setTime]);
 
   return (

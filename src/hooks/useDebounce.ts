@@ -5,7 +5,7 @@ export default function debounce(
 ): (...args: any[]) => void {
   let timeoutID: NodeJS.Timeout | null = null;
 
-  return function (...args: any[]): void {
+  return function (this: any, ...args: any[]): void {
     if (timeoutID !== null) {
       clearTimeout(timeoutID);
     }
