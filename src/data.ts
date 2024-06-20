@@ -18,7 +18,7 @@ export const data = [
     category: 'Our signature handshake',
     words: ['Shake', 'Gang', 'Bump', 'Wrestle'],
   },
-  { category: 'Our special places', words: ['Park', 'Beach', 'Bed', 'Garden'] },
+  { category: 'Our special places', words: ['Park', 'Beach', 'Uni', 'Garden'] },
   {
     category: 'Classic planet cooking routine',
     words: ['Wash', 'Dry', 'Salt', 'Pepper'],
