@@ -11,12 +11,10 @@ function Index() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <div className="p-2">
-      <h3>Hello Planet!</h3>
-      <p>
-        You've scanned the QR code from the post note and have now stubbled upon
-        this something.
-      </p>
+    <div className="flex flex-col justify-center items-center gap-4 pt-44">
+      <h3>Hello Planet! 🌏</h3>
+      <p className="text-center">What were you expecting to find here? 🤔</p>
+      <p className="text-center">Well I have something fun for you</p>
       <Button
         onClick={onToggle}
         className="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
