@@ -33,6 +33,7 @@ Run development locally
 - TypeScript
 - React
 - Zustand
+- Tanstack Router
 - Tailwind with shadcn/ui
 - Vite
 - Vitest
