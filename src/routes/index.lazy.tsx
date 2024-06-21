@@ -23,7 +23,7 @@ function Index() {
   useEffect(() => {
     const timers = [
       setTimeout(() => setShowFirst(true), 0),
-      setTimeout(() => setShowSecond(true), 2000), // Adjust timing as needed
+      setTimeout(() => setShowSecond(true), 2000),
       setTimeout(() => setShowThird(true), 4000),
       setTimeout(() => setShowButton(true), 6000),
     ];

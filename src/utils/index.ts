@@ -27,3 +27,7 @@ export function formatTime(time: number) {
 
   return `${getHours} : ${getMinutes} : ${getSeconds}`;
 }
+
+export function shuffleWords(words: string[]) {
+  return [...words].sort(() => Math.random() - 0.5);
+}
