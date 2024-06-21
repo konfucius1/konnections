@@ -2,7 +2,7 @@ import { Categories, categories } from '../data';
 import { useGameState } from '../stores/useGameState';
 
 export function flattenWords(categories: Categories) {
-  return Object.values(categories).flat();
+  return shuffleWords(Object.values(categories).flat());
 }
 
 function shuffleWords(words: string[]) {

@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import debounce from '@/hooks/useDebounce';
 import { formatTime } from '@/utils';
 
-function KonnectionGame({ words }: { words: string[] }) {
+function KonnectionGame() {
   const {
     handleSelectWord,
     handleShuffle,
@@ -20,7 +20,7 @@ function KonnectionGame({ words }: { words: string[] }) {
   } = useConnectionsGame();
 
   const {
-    // words,
+    words,
     selectedWords,
     decrementAttempt,
     setCorrectAttempt,
