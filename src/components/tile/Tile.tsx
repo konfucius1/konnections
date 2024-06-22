@@ -27,7 +27,7 @@ export function Tile({ word, isSelected, onClick }: TileType) {
       ref={buttonRef}
       className={`${
         isSelected ? 'bg-blue-400' : 'bg-blue-200'
-      } text-zinc-800 px-8 rounded-md py-4 md:text-lg text-md font-semibold hover:bg-blue-400 transition ease-in-out delay-25 h-20 items-center flex justify-center uppercase`}
+      } text-zinc-800 px-8 rounded-md py-4 md:text-lg text-md font-semibold  transition ease-in-out delay-25 h-20 items-center flex justify-center uppercase`}
       onClick={() => {
         onClick();
       }}

@@ -33,15 +33,24 @@ function Index() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 pt-44">
+    <div className="flex flex-col justify-center items-center gap-4 pt-40">
       {showFirst && (
-        <TextGenerateEffect words={wordsFirst} className="font-thin" />
+        <TextGenerateEffect
+          words={wordsFirst}
+          className="font-thin text-xs text-center"
+        />
       )}
       {showSecond && (
-        <TextGenerateEffect words={wordsSecond} className="font-thin" />
+        <TextGenerateEffect
+          words={wordsSecond}
+          className="font-thin text-xs text-center"
+        />
       )}
       {showThird && (
-        <TextGenerateEffect words={wordsThird} className="font-thin" />
+        <TextGenerateEffect
+          words={wordsThird}
+          className="font-thin text-xs text-center"
+        />
       )}
 
       {showButton && (

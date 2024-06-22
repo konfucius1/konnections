@@ -71,6 +71,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground mx-auto flex min-h-screen w-full  max-w-3xl flex-col px-8 pt-16 font-mono text-sm font-normal antialiased;
+    @apply bg-background text-foreground mx-auto flex max-h-screen w-full  max-w-3xl flex-col px-8 pt-16 font-mono text-sm font-normal antialiased;
   }
 }

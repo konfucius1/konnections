@@ -34,11 +34,6 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, time, gameWon }) => {
           <Button onClick={onClose} variant="outline">
             Close
           </Button>
-          {/* {gameWon && (
-            <Button className="bg-blue-400 hover:bg-blue-600">
-              Go to your reward
-            </Button>
-          )} */}
         </div>
       </motion.div>
     </motion.div>

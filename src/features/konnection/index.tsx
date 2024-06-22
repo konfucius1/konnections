@@ -78,7 +78,7 @@ function KonnectionGame() {
   const debouncedSubmit = debounce(handleSubmit, 1000);
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center mt-8">
+    <div className="flex flex-col gap-4 justify-center items-center lg:mt-8">
       <div className="animate-wobble text-center text-2xl font-bold">
         {alert ? <h1>{alert}</h1> : <h1>Find the konnections!</h1>}
       </div>
