@@ -6,9 +6,10 @@ interface ModalProps {
   message: string;
   onClose: () => void;
   time: string;
+  gameWon: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ message, onClose, time }) => {
+const Modal: React.FC<ModalProps> = ({ message, onClose, time, gameWon }) => {
   return (
     <motion.div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
@@ -23,17 +24,21 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, time }) => {
         exit={{ scale: 0.5 }}
       >
         <h2 className="text-2xl font-bold mb-4">{message}</h2>
-        <section>
-          <p>You finished it in</p>
-          <p className="font-bold">{time}</p>
-        </section>
+        {gameWon && (
+          <section>
+            <p>You finished it in</p>
+            <p className="font-bold">{time}</p>
+          </section>
+        )}
         <div className="flex gap-4 justify-center mt-4">
           <Button onClick={onClose} variant="outline">
             Close
           </Button>
-          <Button className="bg-blue-400 hover:bg-blue-600">
-            Go to your reward
-          </Button>
+          {/* {gameWon && (
+            <Button className="bg-blue-400 hover:bg-blue-600">
+              Go to your reward
+            </Button>
+          )} */}
         </div>
       </motion.div>
     </motion.div>

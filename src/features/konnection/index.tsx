@@ -125,6 +125,7 @@ function KonnectionGame() {
             message={gameWon ? 'Congratulations! 🎉' : 'Nice try'}
             onClose={handleCloseModal}
             time={formatTime(time)}
+            gameWon={gameWon}
           />
         )}
       </AnimatePresence>
